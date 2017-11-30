@@ -2,12 +2,13 @@ package com.roy.tools.poi;
 
 
 import com.roy.tools.poi.model.Cash;
-import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.lang.reflect.Field;
@@ -17,11 +18,14 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-
+/**
+ * Created by roy on 2017/11/30.
+ */
+@Service
 public class ExcelUtil {
-    private final static Logger logger = Logger.getLogger(ExcelUtil.class);
 
+    @Autowired
+    private IExcelConsumer excelConsumer;
     /**
      * 导出Excel文件
      *
@@ -215,7 +219,7 @@ public class ExcelUtil {
         System.out.println("");
     }
 
-    private static Workbook createWorkBook(String fileName, InputStream is) throws IOException {
+    private  Workbook createWorkBook(String fileName, InputStream is) throws IOException {
         if (fileName.toLowerCase().endsWith("xls")) {
             return new HSSFWorkbook(is);
         }
@@ -225,13 +229,16 @@ public class ExcelUtil {
         return null;
     }
 
-    public static int excelImport(File file, String fileName, IExcelConsumer consumer) throws IOException {
-        Workbook workbook = createWorkBook(fileName, new FileInputStream(file));
+    public  int excelImport(String path ) throws IOException {
+        File file = new File(path);
+        if(!file.isFile())
+            return 0;
+        Workbook workbook = createWorkBook(file.getName(), new FileInputStream(file));
         //只处理 第一个Sheet
         Sheet sheet = workbook.getSheetAt(0);
-        logger.info("导入Excel文件" + fileName + ",共:" + sheet.getLastRowNum() + "行");
+        System.out.println("导入Excel文件" + file.getName() + ",共:" + sheet.getLastRowNum() + "行");
 
-        consumer.consume(sheet);
+        excelConsumer.consume(sheet);
         return sheet.getLastRowNum();
     }
 }

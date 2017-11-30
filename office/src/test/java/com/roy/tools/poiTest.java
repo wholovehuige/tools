@@ -1,11 +1,10 @@
 package com.roy.tools;
 
-import com.roy.tools.poi.TestService;
+import com.roy.tools.poi.TestSertvice;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -16,13 +15,21 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @SpringBootApplication
 @WebAppConfiguration
 public class poiTest {
-
     @Autowired
-    TestService testService;
+    TestSertvice testSertvice;
+
+//    @Autowired
+//    private ExcelUtil excelUtil;
 
     @Test
     public void sendTest() {
-        testService.print();
+        testSertvice.print();
+//        try {
+//            String filePath = "C:/Users/soabs/Desktop/data.xlsx";
+//            excelUtil.excelImport(filePath);
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
 }

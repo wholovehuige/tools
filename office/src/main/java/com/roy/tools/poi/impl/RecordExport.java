@@ -9,7 +9,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+/**
+ * Created by roy on 2017/11/30.
+ */
 public class RecordExport implements IExcelExport<RecordPoi> {
     List<RecordPoi> poiList = new ArrayList<>();
     private String title;
