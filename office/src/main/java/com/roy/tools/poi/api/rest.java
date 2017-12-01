@@ -2,6 +2,7 @@ package com.roy.tools.poi.api;
 
 import com.roy.tools.poi.ExcelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +17,7 @@ public class rest {
     @Autowired
     private ExcelUtil excelUtil;
 
-    @RequestMapping(value = "/get")
+    @GetMapping(value = "/get")
     public String importExcel() {
         try {
             String filePath = "C:/Users/soabs/Desktop/data.xlsx";

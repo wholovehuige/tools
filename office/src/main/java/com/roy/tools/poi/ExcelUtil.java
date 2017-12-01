@@ -1,6 +1,7 @@
 package com.roy.tools.poi;
 
 
+import com.roy.tools.poi.impl.consumer.RecordComsumer;
 import com.roy.tools.poi.model.Cash;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.HSSFColor;
@@ -25,7 +26,8 @@ import java.util.regex.Pattern;
 public class ExcelUtil {
 
     @Autowired
-    private IExcelConsumer excelConsumer;
+    private RecordComsumer consume;
+
     /**
      * 导出Excel文件
      *
@@ -238,7 +240,7 @@ public class ExcelUtil {
         Sheet sheet = workbook.getSheetAt(0);
         System.out.println("导入Excel文件" + file.getName() + ",共:" + sheet.getLastRowNum() + "行");
 
-        excelConsumer.consume(sheet);
+        consume.consume(sheet);
         return sheet.getLastRowNum();
     }
 }
