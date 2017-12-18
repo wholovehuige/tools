@@ -7,8 +7,8 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <!--<module>email</module>-->
-        <module>office</module>
+        <module>email</module>
+        <!--<module>office</module>-->
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

@@ -1,0 +1,13 @@
+spring:
+  mail:
+#    host: smtp.qq.com
+    host: smtp.163.com
+    username: soabstract@163.com
+    password: soabstract163
+    properties:
+      mail:
+        stmp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
